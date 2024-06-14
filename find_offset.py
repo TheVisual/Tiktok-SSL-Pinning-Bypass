@@ -11,6 +11,7 @@ def find_function_arm64(lib):
     results = r2.cmdj('/xj 56 65 72 69 66 79 43 65 72 74 00')
     offset = results[0]['offset']
     results = r2.cmdj('axtj ' + str(offset))
+    results = [x for x in results if x['type'] == "STRN"]
     usage_offset = results[0]['from']
     r2.cmd("s " + str(usage_offset))
 
